@@ -1,0 +1,47 @@
+﻿@model Branch
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .input-validation-error {
+        border-color: red;
+    }
+</style>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form class="m-1 p-1" method="post">
+    <div class="form-group" style="display:none">
+        <label asp-for="Id"></label>
+        <input asp-for="Id" type="text" readonly class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="usr">Bank </label>
+        <input asp-for="BankName_VW" type="text" readonly class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="BranchTitle"></label>
+        <input asp-for="BranchTitle" type="text" class="form-control" />
+        <span asp-validation-for="BranchTitle" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="BranchAddress"></label>
+        <textarea asp-for="BranchAddress" class="form-control form-control-user" rows="4" cols="50" id="idBranchAddress">                   
+                                </textarea>
+        <span asp-validation-for="BranchAddress" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="BranchManager"></label>
+        <input asp-for="BranchManager" type="text" class="form-control" />
+        <span asp-validation-for="BranchManager" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ContactNo"></label>
+        <input asp-for="ContactNo" type="text" class="form-control" />
+        <span asp-validation-for="ContactNo" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<script src="~/vendor/jquery/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+

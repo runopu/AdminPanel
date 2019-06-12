@@ -1,0 +1,53 @@
+﻿@model IEnumerable<User>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3><a asp-action="Create" class="btn btn-primary" style="margin-left:5px">Add New User</a></h3>
+<table class="table table-bordered table-sm table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Contact No.</th>
+            <th>Bank</th>
+            <th>Branch</th>
+            <th>User Type</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model == null)
+        {
+            <tr>
+                <td colspan="7" class="text-center">No Model Data</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.Id</td>
+                    <td>@p.FirstName</td>
+                    <td>@p.LastName</td>
+                    <td>@p.Email</td>
+                    <td>@p.ContactNo</td>
+                    <td>@p.BankName_VW</td>
+                    <td>@p.BranchName_VW</td>
+                    <td>@p.UserType_VW</td>
+                    <td><a asp-action="Edit" asp-route-id="@p.Id"  class="btn btn-primary">Update</a></td>
+                    <td>
+                        <form asp-action="Edit" method="post" asp-route-id="@p.Id">
+                            <button  class="btn btn-primary">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,78 @@
+﻿@model ReportMapping
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .input-validation-error {
+        border-color: red;
+    }
+</style>
+
+<script src="~/vendor/jquery/jquery.js"></script>
+
+<style>
+    .input-validation-error {
+        border-color: red;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    });
+</script>
+
+<div class="container">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Edit report access information</h1>
+                        </div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <form class="user" method="post">
+                            <div class="form-group">
+                                <label for="usr">Bank </label>
+                                <input asp-for="Bank_VW" class="form-control form-control-user" readonly type="text" id="bankId" />
+                            </div>
+                            <div class="form-group">
+                                <label for="usr">Branch </label>
+                                <input asp-for="Branch_VW" class="form-control form-control-user" readonly type="text" id="branchId" />
+                            </div>
+                            <div class="form-group">
+                                <label for="usr">User </label>
+                                <input asp-for="Username" class="form-control form-control-user" readonly type="text" id="idUsername" />
+                            </div>
+                            <div class="form-group">
+                                <label for="usr">Contact No. </label>
+                                <input asp-for="ContactNo" class="form-control form-control-user" readonly type="text" id="idContactNo" />
+                            </div>
+                            <div class="form-group">
+                                <label for="usr">Report Title </label>
+                                <input asp-for="ReportTitle" class="form-control form-control-user" type="text" id="idReportTitle" />
+                                <span asp-validation-for="ReportTitle" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="usr">Report URL </label>
+                                <input asp-for="ReportUrl" class="form-control form-control-user" type="text" id="idReportUrl" />
+                                <span asp-validation-for="ReportUrl" class="text-danger"></span>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary btn-user btn-block">Update</button>
+                            <hr>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/vendor/jquery/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+

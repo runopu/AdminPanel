@@ -1,0 +1,53 @@
+﻿@model IEnumerable<AdminPanel.Models.Branch>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<h3><a asp-action="Create" class="btn btn-primary" style="margin-left:5px">Add New Branch</a></h3>
+<table class="table table-bordered table-sm table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Bank Name</th>
+            <th>Branch Title</th>
+            <th>Branch Address</th>
+            <th>Branch Manager</th>
+            <th>Contact No.</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model == null)
+        {
+            <tr>
+                <td colspan="7" class="text-center">No Model Data</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var p in Model)
+            {
+            <tr>
+                <td>@p.Id</td>
+                <td>@p.BankName_VW</td>
+                <td>@p.BranchTitle</td>
+                <td>@p.BranchAddress</td>
+                <td>@p.BranchManager</td>
+                <td>@p.ContactNo</td>
+                <td><a asp-action="Update" asp-route-id="@p.Id"  class="btn btn-primary">Update</a></td>
+                <td>
+                    <form asp-action="Delete" method="post" asp-route-id="@p.Id">
+                        <button  class="btn btn-primary">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>

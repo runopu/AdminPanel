@@ -1,0 +1,149 @@
+﻿@model User
+
+
+<script src="~/vendor/jquery/jquery.js"></script>
+
+<style>
+    .input-validation-error {
+        border-color: red;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var items = "<option value='0'>Select</option>";
+        $('#branchID').html(items);
+
+        $('#bankId').change(function () {
+            var url = '@Url.Content("~/")' + "User/GetBranchBySelectingBank";
+            var ddlSource = "#bankId";
+            $.getJSON(url, { _bankId: $(ddlSource).val() }, function (data) {
+                var items = '';
+                $('#branchID').empty();
+                $.each(data, function (i, item) {
+                    items += "<option value='" + item.value + "'>" + item.text+"</option>";
+                });
+                $('#branchID').html(items);
+            });
+        });
+    });
+</script>
+<script>
+    var allowsubmit = false;
+    $(function () {
+        //on keypress
+        $('#idRepeatPassword').keyup(function (e) {
+            //get values
+            var pass = $('#idPassword').val();
+            var confpass = $(this).val();
+
+            //check the strings
+            if (pass == confpass) {
+                //if both are same remove the error and allow to submit
+                $('#idError').text('');
+                allowsubmit = true;
+            } else {
+                //if not matching show error and not allow to submit
+                $('#idError').text('Password not matching');
+                allowsubmit = false;
+            }
+        });
+
+        //jquery form submit
+        $('#form').submit(function () {
+
+            var pass = $('#idPassword').val();
+            var confpass = $('#idRepeatPassword').val();
+
+            //just to make sure once again during submit
+            //if both are true then only allow submit
+            if (pass == confpass) {
+                allowsubmit = true;
+            }
+            if (allowsubmit) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    });
+</script>
+<div class="container">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                        </div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <form class="user" method="post" id="form">
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input asp-for="FirstName" class="form-control form-control-user" style="margin-left:-12px" id="idFirstName" placeholder="First Name" />
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input asp-for="LastName" class="form-control form-control-user" style="margin-left:10px" id="idLastName" placeholder="Last Name" />
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Email" class="form-control form-control-user" id="idEmail" placeholder="Email Address" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="ContactNo" class="form-control form-control-user" id="idContactNo" placeholder="Contact No." />
+                                <span asp-validation-for="ContactNo" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="usr">Select Bank </label>
+                                <select asp-for="BankId"
+                                        class="form-control" id="bankId"
+                                        asp-items="@(new SelectList(@ViewBag.ListOfBank,"Id","BankName"))"></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="usr">Select Branch </label>
+                                <select asp-for="BranchId"
+                                        class="form-control" id="branchID"
+                                        asp-items="@(new SelectList(string.Empty,"Id","BranchName"))"></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="usr">User type </label>
+                                <select asp-for="UserType" class="form-control">
+                                    <option value="0">Select Type</option>
+                                    <option value="1">Admin</option>
+                                    <option value="2">Normal</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input asp-for="Password" type="password" class="form-control form-control-user" style="margin-left:-12px" id="idPassword" placeholder="Password" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control form-control-user" style="margin-left:10px" id="idRepeatPassword" placeholder="Repeat Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span id="idError" style="color:red"></span><br />
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-user btn-block">Register Account</button>
+                            <hr>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/vendor/jquery/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

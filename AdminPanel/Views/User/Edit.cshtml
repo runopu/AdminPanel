@@ -1,0 +1,94 @@
+﻿@model User
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .input-validation-error {
+        border-color: red;
+    }
+</style>
+
+<script src="~/vendor/jquery/jquery.js"></script>
+
+<style>
+    .input-validation-error {
+        border-color: red;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    });
+</script>
+
+<div class="container">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Edit an Account!</h1>
+                        </div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <form class="user" method="post">
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input asp-for="FirstName" class="form-control form-control-user" id="idFirstName" style="margin-left:-12px" placeholder="First Name" />
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input asp-for="LastName" class="form-control form-control-user" id="idLastName" style="margin-left:10px" placeholder="Last Name" />
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Email" class="form-control form-control-user" id="idEmail" placeholder="Email Address" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="ContactNo" class="form-control form-control-user" id="idContactNo" placeholder="Contact No." />
+                                <span asp-validation-for="ContactNo" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="usr">Bank </label>
+                                <input asp-for="BankName_VW" class="form-control form-control-user" readonly type="text" id="bankId" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="usr">Branch </label>
+                                <input asp-for="BranchName_VW" class="form-control form-control-user" readonly type="text" id="brancId" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="usr">User type </label>
+                                <select asp-for="UserType" class="form-control">
+                                    <option value="0">Select Type</option>
+                                    <option value="1">Admin</option>
+                                    <option value="2">Normal</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-user btn-block">Register Account</button>
+                            <hr>
+
+                        </form>
+                        <hr>
+                        <div class="text-center">
+                            <a class="small" href="forgot-password.html">Forgot Password?</a>
+                        </div>
+                        <div class="text-center">
+                            <a class="small" href="login.html">Already have an account? Login!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/vendor/jquery/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
